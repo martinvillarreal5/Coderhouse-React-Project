@@ -1,13 +1,13 @@
 import React from "react";
-import CssBaseline from '@mui/material/CssBaseline';
+import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
 
 
 function App() {
   return (
     <>
-      <CssBaseline />
-      <NavBar/>
+      <NavBar />
+      <ItemListContainer greeting={"Welcome to Ecommerce"}/>
     </>
   );
 }
