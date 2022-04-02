@@ -9,7 +9,7 @@ export default function ItemListContainer({ greeting }) {
   };
   return (
     <>
-      <Container>
+      <Container maxWidth="xl">
         <h1>{greeting}</h1>
         <ItemCount stock={5} initial={1} onAdd={onAdd} />
       </Container>
