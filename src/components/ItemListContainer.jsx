@@ -1,17 +1,24 @@
-import React from "react";
-import ItemCount from "./ItemCount";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
+import ItemList from "./ItemList";
+import products from "../Utils/products";
+import customFetch from "../Utils/customFetch";
 
 export default function ItemListContainer({ greeting }) {
-  const onAdd = (count) => {
-    alert(`Added ${count} to cart`);
-    
-  };
+  const [datos, setDatos] = useState([]);
+
+  useEffect(() => {
+    customFetch(2000, products)
+      .then((result) => setDatos(result))
+      .catch((err) => console.log(err));
+  }, [datos]);
+
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <h1>{greeting}</h1>
-        <ItemCount stock={5} initial={1} onAdd={onAdd} />
+
+        <ItemList products={datos} />
       </Container>
     </>
   );
