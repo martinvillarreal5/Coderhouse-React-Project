@@ -5,18 +5,14 @@ export default function ItemCount({ stock, initial, onAdd }) {
   const [count, setCount] = useState(initial);
 
   const handleIncrease = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    } else {
-      alert(`Sorry, we only have ${stock} in stock`);
-    }
+    count < stock
+      ? setCount(count + 1)
+      : alert(`Sorry, we only have ${stock} in stock`);
   };
   const handleDecrease = () => {
-    if (count > initial) {
-      setCount(count - 1);
-    } else {
-      alert(`Sorry, you can't have less than ${initial}`);
-    }
+    count > initial
+      ? setCount(count - 1)
+      : alert(`Sorry, you can't have less than ${initial}`);
   };
 
   return (
@@ -27,7 +23,6 @@ export default function ItemCount({ stock, initial, onAdd }) {
           borderRadius: "1rem",
           p: "1rem",
           width: "fit-content",
-          mb: "1rem",
         }}
       >
         <h2>Stock: {stock}</h2>

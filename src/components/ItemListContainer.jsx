@@ -2,28 +2,26 @@ import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import ItemList from "./ItemList";
 import products from "../Utils/products";
-import customFetch from "../Utils/customFetch";
-import ItemCount from "./ItemCount";
+import {getProducts} from "../Utils/customFetch";
 
 export default function ItemListContainer({ greeting }) {
-  const [datos, setDatos] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
-    customFetch(2000, products)
-      .then((result) => setDatos(result))
+    getProducts(2000, products)
+      .then((result) => {setData(result); setLoading(false)})
       .catch((err) => console.log(err));
-  }, [datos]);
+  }, [data]);
 
-  const onAdd = (count) => {
-    alert(`Added ${count} items to cart`);
-  };
+  
 
   return (
     <>
       <Container maxWidth="lg">
         <h1>{greeting}</h1>
-        <ItemCount stock={5} initial={1} onAdd={onAdd} />
-        <ItemList products={datos} />
+        <ItemList products={data} loading={loading}/>
       </Container>
     </>
   );

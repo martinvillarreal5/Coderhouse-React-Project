@@ -1,12 +1,13 @@
 import * as React from "react";
-import { memo } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
-export default memo(function Item({ title, description, pictureUrl, price }) {
+export default function Item({ product }) {
+  const { id, title, description, pictureUrl, price } = product;
   return (
     <>
       <Grid item xs={2} sm={3} md={3}>
@@ -32,11 +33,11 @@ export default memo(function Item({ title, description, pictureUrl, price }) {
           </CardActionArea>
           <CardActions>
             <Button size="small" color="primary">
-              Add to Cart
+              <Link to={`/item/${id}`}>Details</Link>
             </Button>
           </CardActions>
         </Card>
       </Grid>
     </>
   );
-});
+};
