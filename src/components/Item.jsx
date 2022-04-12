@@ -32,8 +32,8 @@ export default function Item({ product }) {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button size="small" color="primary">
-              <Link to={`/item/${id}`}>Details</Link>
+            <Button size="small" color="primary" component={Link} to={`/item/${id}`}>
+              Details
             </Button>
           </CardActions>
         </Card>

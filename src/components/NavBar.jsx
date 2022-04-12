@@ -29,16 +29,15 @@ export default function NavBar() {
     <AppBar position="static">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <Link to="/">
-          <Typography
+          
+          <Typography component={Link} to="/"
             variant="h6"
             noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{ mr: 2, display: { xs: "none", md: "flex" },textTransform: "none", color: "white", textDecoration: "none" }}
           >
             Ecommerce
           </Typography>
-          </Link>
+          
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -48,6 +47,7 @@ export default function NavBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              
             >
               <MenuIcon />
             </IconButton>
@@ -76,16 +76,14 @@ export default function NavBar() {
               ))}
             </Menu>
           </Box>
-          <Link to="/">
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, textTransform: "none", color: "white", textDecoration: "none" }}
           >
             Ecommerce
           </Typography>
-          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button

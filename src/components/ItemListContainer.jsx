@@ -18,7 +18,7 @@ export default function ItemListContainer() {
         .then((result) => { 
           if (isMounted) {
           setData(result); setLoading(false) 
-          }
+          } 
         })
         .catch((err) => console.log(err))
       ) : (

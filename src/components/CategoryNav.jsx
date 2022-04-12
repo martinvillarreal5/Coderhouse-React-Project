@@ -9,17 +9,17 @@ export default function CategoryNav() {
                     p: 3,
                 }}
             >
-                <Button size="small" color="primary" 
+                <Button size="small" color="primary" component={Link} to={`/category/category1`}
                 sx={{
                     p: 1,
                 }}>
-                    <Link to={`/category/category1`}>Category 1</Link>
+                    Category 1
                 </Button>
-                <Button size="small" color="primary" 
+                <Button size="small" color="primary" component={Link} to={`/category/category2`}
                 sx={{
                     p: 1,
                 }}>
-                    <Link to={`/category/category2`}>Category 2</Link>
+                    Category 2
                 </Button>
             </Box>
         </Container>
