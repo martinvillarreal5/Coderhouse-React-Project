@@ -10,6 +10,10 @@ export default function ItemListContainer() {
   const [loading, setLoading] = useState(true);
   const { productCategory } = useParams();
   
+  //make loading true every time productCategory changes
+  useEffect(() => {
+    setLoading(true);
+  }, [productCategory]);
 
   useEffect(() => {
     let isMounted = true;
@@ -30,12 +34,11 @@ export default function ItemListContainer() {
           })
           .catch((err) => console.log(err))
       )
+    
     return () => {
       isMounted = false; // prevent memory leak? or at least prevent "Can't perform a React state update on an unmounted component" warning
     }
   }, [productCategory, data]);
-
-
 
   return (
     <>
