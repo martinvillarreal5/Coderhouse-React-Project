@@ -1,5 +1,6 @@
-import CartWidget from "./CartWidget";
 import * as React from "react";
+import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -28,6 +29,7 @@ export default function NavBar() {
     <AppBar position="static">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
+          <Link to="/">
           <Typography
             variant="h6"
             noWrap
@@ -36,6 +38,7 @@ export default function NavBar() {
           >
             Ecommerce
           </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -73,6 +76,7 @@ export default function NavBar() {
               ))}
             </Menu>
           </Box>
+          <Link to="/">
           <Typography
             variant="h6"
             noWrap
@@ -81,6 +85,7 @@ export default function NavBar() {
           >
             Ecommerce
           </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
