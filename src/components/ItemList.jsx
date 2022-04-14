@@ -1,4 +1,3 @@
-import React from "react";
 import { Grid, LinearProgress } from "@mui/material";
 import Item from "./Item";
 

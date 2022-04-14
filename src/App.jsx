@@ -1,30 +1,47 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import AppShell from "./Components/AppShell";
+import NavBar from "./Components/NavBar";
 import CategoryNav from "./Components/CategoryNav";
 import ItemDetailContainer from "./Components/ItemDetailContainer";
 import ItemListContainer from "./Components/ItemListContainer";
-import NavBar from "./Components/NavBar";
+import Footer from "./Components/Footer";
 
-function App() {
+export default function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-        <CategoryNav/>
-        <Routes>
-          <Route
-             path="/item/:productId" element={<ItemDetailContainer/>}
-          />
-          <Route
-            path="/category/:productCategory" element={<ItemListContainer/>}
-          />
-          <Route
-            path="/" element={<ItemListContainer/>}
-          />
-        </Routes>
+        <Box
+          sx={{
+            display: "flex",
+            flexFlow: "column",
+            height: "100%",
+          }}>
+          <NavBar />
+          <CategoryNav />
+          <Container sx={{
+            maxWidth: "lg",
+            flex: "1 1 auto"
+          }}>
+            <Routes>
+              <Route
+                path="/item/:productId" element={<ItemDetailContainer />}
+              />
+              <Route
+                path="/category/:productCategory" element={<ItemListContainer />}
+              />
+              <Route
+                path="/" element={<ItemListContainer />}
+              />
+            </Routes>
+          </Container>
+          <Footer>
+            <p> lorem ipsum </p>
+          </Footer>
+        </Box>
       </BrowserRouter>
     </>
   );
 }
 
-export default App;

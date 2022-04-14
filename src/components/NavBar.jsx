@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 import AppBar from "@mui/material/AppBar";
@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 const pages = ["Home", "Products", "Blog"];
 
 export default function NavBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,7 +26,7 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{flex: "0 1 auto",}}>
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           

@@ -1,6 +1,5 @@
-import React, { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Container from "@mui/material/Container";
 import ItemList from "./ItemList";
 import products from "../Utils/products";
 import { getProducts, getProductByCategory } from "../Utils/customFetch";
@@ -9,42 +8,38 @@ export default function ItemListContainer() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { productCategory } = useParams();
-  
-  //make loading true every time productCategory changes
-  useEffect(() => {
-    setLoading(true);
-  }, [productCategory]);
 
   useEffect(() => {
+    setLoading(true); // set loading to true to show loading indicator when category changes
     let isMounted = true;
-    productCategory === undefined ?
-      (getProducts(2000, products)
-        .then((result) => { 
+    const categories = ["category1", "category2"];
+    categories.includes(productCategory) ?
+      (getProductByCategory(2000, products, productCategory)
+        .then((result) => {
           if (isMounted) {
-          setData(result); setLoading(false) 
-          } 
+            setData(result); setLoading(false)
+          }
         })
         .catch((err) => console.log(err))
-      ) : (
-        getProductByCategory(2000, products, productCategory)
-          .then((result) => { 
+      ) : productCategory === undefined /* replace this condition*/ ?
+        (getProducts(2000, products)
+          .then((result) => {
             if (isMounted) {
-            setData(result); setLoading(false) 
+              setData(result); setLoading(false)
             }
           })
           .catch((err) => console.log(err))
-      )
-    
+        )
+        : console.log("invalid category") /* make a 404 error page for this */;
+
     return () => {
       isMounted = false; // prevent memory leak? or at least prevent "Can't perform a React state update on an unmounted component" warning
     }
-  }, [productCategory, data]);
+  }, [productCategory]);
 
   return (
     <>
-      <Container maxWidth="lg">
-        <ItemList products={data} loading={loading} />
-      </Container>
+      <ItemList products={data} loading={loading} />
     </>
   );
 }
