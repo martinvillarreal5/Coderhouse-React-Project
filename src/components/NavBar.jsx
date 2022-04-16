@@ -26,7 +26,8 @@ export default function NavBar() {
   };
 
   return (
-    <AppBar position="static" sx={{flex: "0 1 auto",}}>
+    <>
+    <AppBar position="fixed" >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           
@@ -100,12 +101,13 @@ export default function NavBar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <CartWidget />
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+    <Toolbar />
+    </>
   );
 }

@@ -2,44 +2,47 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import products from "../Utils/products";
-import { getProducts, getProductByCategory } from "../Utils/customFetch";
+import { getProducts } from "../Utils/customFetch";
 
 export default function ItemListContainer() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { productCategory } = useParams();
-
+  const [invalidCategory, setInvalidCategory] = useState(false);
+  /*
+  path="/"
+  path="/category/:productCategory" 
+  productCategory:
+   1caso categoria correcta - listo
+   2caso categoria invalida - 404? redireccion a /? - dejan de funcionar los botones de categaria !!!!!!!!!!!
+   3caso categoria: que la ruta sea / osea undefined? - carga todos los productos - listo por defecto?
+  */
   useEffect(() => {
-    setLoading(true); // set loading to true to show loading indicator when category changes
+    setLoading(true);
     let isMounted = true;
-    const categories = ["category1", "category2"];
-    categories.includes(productCategory) ?
-      (getProductByCategory(2000, products, productCategory)
-        .then((result) => {
-          if (isMounted) {
-            setData(result); setLoading(false)
+    const categories = ["category1", "category2"]; /* es mala practica declarar variables const en un useEffect???*/
+    getProducts(2000, products)
+      .then((result) => {
+        if (isMounted) {
+          if (productCategory) {
+            categories.includes(productCategory) /* Remplazar con un result.find?  */
+              ? result = result.filter((item) => item.category === productCategory)
+              : setInvalidCategory(true);
           }
-        })
-        .catch((err) => console.log(err))
-      ) : productCategory === undefined /* replace this condition*/ ?
-        (getProducts(2000, products)
-          .then((result) => {
-            if (isMounted) {
-              setData(result); setLoading(false)
-            }
-          })
-          .catch((err) => console.log(err))
-        )
-        : console.log("invalid category") /* make a 404 error page for this */;
-
+          setData(result);
+          setLoading(false)
+        }
+      })
+      .catch((err) => console.log(err))
     return () => {
-      isMounted = false; // prevent memory leak? or at least prevent "Can't perform a React state update on an unmounted component" warning
+      isMounted = false;
+      setInvalidCategory(false)
     }
   }, [productCategory]);
 
   return (
-    <>
-      <ItemList products={data} loading={loading} />
-    </>
+    invalidCategory
+      ? <h3>404 category not found</h3>
+      : <ItemList products={data} loading={loading} />
   );
 }

@@ -19,4 +19,12 @@ code {
     monospace;
 }
 
+.Appshell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
+.Appcontent {
+  flex: 1 1 auto;
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function CategoryNav() {
     return (
-        <Container maxWidth="lg" sx={{flex: "0 1 auto"}}>
+        <Container maxWidth="lg">
             <Box display="flex" justifyContent="center" alignItems="center"
                 sx={{
                     p: 3,
