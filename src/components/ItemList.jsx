@@ -13,7 +13,7 @@ export default function ItemList({ products, loading }) {
           columns={{ xs: 4, sm: 9, md: 12 }}
         >
           {products.map((product) => (
-            <Item product={product} key={product.id}/>
+            <Item product={product} key={product.id} />
           ))}
         </Grid>
       )}

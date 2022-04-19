@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { getProducts } from "../Utils/customFetch";
 import products from "../Utils/products";
@@ -16,17 +16,16 @@ export default function ItemDetailContainer() {
         result.find((item) => item.id === productId)
           ? setProduct(result.find((item) => item.id === productId))
           : setInvalidId(true);
-        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
     return () => {
       setInvalidId(false);
-    }
+    };
   }, [productId]);
 
-  return (
-    invalidId
-      ? <h3>404 item not found</h3>
-      : <ItemDetail key={productId} product={product} loading={loading} />
+  return (invalidId
+    ? <h3>404 item not found</h3>
+    : <ItemDetail key={productId} product={product} loading={loading} />
   );
 }

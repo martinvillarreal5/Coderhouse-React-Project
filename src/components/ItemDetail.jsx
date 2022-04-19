@@ -1,10 +1,19 @@
-import { Box, LinearProgress } from "@mui/material";
+import { Box, LinearProgress, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
+import { CartContext } from "./CartContext";
 
 export default function ItemDetail({ product, loading }) {
-  const { id, title, description, pictureUrl, price } = product;
+  const { title, description, pictureUrl, price } = product;
+  const [inCart, setInCart] = useState(false);
+  const { addToCart } = useContext(CartContext);
+
   const onAdd = (count) => {
+    const productToAdd = { ...product, count };
     alert(`Added ${count} items to cart`);
+    setInCart(true);
+    addToCart(productToAdd);
   };
   return (
     <>
@@ -25,7 +34,21 @@ export default function ItemDetail({ product, loading }) {
           <h2>{title}</h2>
           <h3>${price}</h3>
           <p>{description}</p>
-          <ItemCount stock={5} initial={1} onAdd={onAdd} />
+          {inCart ? (
+            <Button
+              size="small"
+              color="primary"
+              component={Link}
+              to={`/cart`}
+              sx={{
+                p: 1,
+              }}
+            >
+              Continuar compra
+            </Button>
+          ) : (
+            <ItemCount stock={5} initial={1} onAdd={onAdd} />
+          )}
         </Box>
       )}
     </>
