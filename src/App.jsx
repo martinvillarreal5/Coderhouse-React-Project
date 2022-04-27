@@ -7,7 +7,9 @@ import ItemDetailContainer from "./Components/ItemDetailContainer";
 import ItemListContainer from "./Components/ItemListContainer";
 import Footer from "./Components/Footer";
 import CartContextProvider from "./Components/CartContext";
-import CartList from "./Components/Cart/CartList";
+import Cart from "./Components/Cart/Cart";
+
+
 
 export default function App() {
   return (
@@ -27,7 +29,7 @@ export default function App() {
                   path="/category/:productCategory"
                   element={<ItemListContainer />}
                 />
-                <Route path="/cart" element={<CartList />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/" element={<ItemListContainer />} />
               </Routes>
             </Container>

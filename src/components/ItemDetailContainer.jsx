@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { getProducts } from "../Utils/customFetch";
 import products from "../Utils/products";
+import { Typography } from "@mui/material";
 
 export default function ItemDetailContainer() {
   const [product, setProduct] = useState({});
@@ -11,7 +12,7 @@ export default function ItemDetailContainer() {
   const [invalidId, setInvalidId] = useState(false);
 
   useEffect(() => {
-    getProducts(2000, products)
+    getProducts(100, products)
       .then((result) => {
         result.find((item) => item.id === productId)
           ? setProduct(result.find((item) => item.id === productId))
@@ -24,8 +25,9 @@ export default function ItemDetailContainer() {
     };
   }, [productId]);
 
-  return (invalidId
-    ? <h3>404 item not found</h3>
-    : <ItemDetail key={productId} product={product} loading={loading} />
+  return invalidId ? (
+    <Typography variant="h4">404 item not found</Typography>
+  ) : (
+    <ItemDetail key={productId} product={product} loading={loading} />
   );
 }

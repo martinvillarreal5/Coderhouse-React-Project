@@ -5,7 +5,7 @@ import ItemCount from "./ItemCount";
 import { CartContext } from "./CartContext";
 
 export default function ItemDetail({ product, loading }) {
-  const { title, description, pictureUrl, price } = product;
+  const { title, description, pictureUrl, price, stock } = product;
   const [inCart, setInCart] = useState(false);
   const { addToCart } = useContext(CartContext);
 
@@ -36,6 +36,7 @@ export default function ItemDetail({ product, loading }) {
           <p>{description}</p>
           {inCart ? (
             <Button
+              variant="contained"
               size="small"
               color="primary"
               component={Link}
@@ -44,10 +45,10 @@ export default function ItemDetail({ product, loading }) {
                 p: 1,
               }}
             >
-              Continuar compra
+              Terminar mi compra
             </Button>
           ) : (
-            <ItemCount stock={5} initial={1} onAdd={onAdd} />
+            <ItemCount stock={stock} initial={1} onAdd={onAdd} />
           )}
         </Box>
       )}

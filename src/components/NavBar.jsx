@@ -14,7 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 
 const pages = ["Home", "Products", "Blog"];
 
+
 export default function NavBar() {
+
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -103,7 +105,6 @@ export default function NavBar() {
                   key={page}
                   onClick={handleCloseNavMenu}
                   sx={{
-                    my: 2,
                     color: "white",
                     display: "block",
                     textTransform: "none",

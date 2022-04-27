@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import products from "../Utils/products";
 import { getProducts } from "../Utils/customFetch";
+import { Typography } from "@mui/material";
 
 export default function ItemListContainer() {
   const [data, setData] = useState([]);
@@ -17,7 +18,7 @@ export default function ItemListContainer() {
       "category1",
       "category2",
     ]; /* es mala practica declarar variables const en un useEffect???*/
-    getProducts(2000, products)
+    getProducts(100, products)
       .then((result) => {
         if (isMounted) {
           if (productCategory) {
@@ -25,8 +26,8 @@ export default function ItemListContainer() {
               productCategory
             ) /* Remplazar con un result.find?  */
               ? (result = result.filter(
-                (item) => item.category === productCategory
-              ))
+                  (item) => item.category === productCategory
+                ))
               : setInvalidCategory(true);
           }
           setData(result);
@@ -40,8 +41,9 @@ export default function ItemListContainer() {
     };
   }, [productCategory]);
 
-  return (invalidCategory
-    ? <h3>404 category not found</h3>
-    : <ItemList products={data} loading={loading} />
-  )
+  return invalidCategory ? (
+    <Typography variant="h4">404 category not found</Typography>
+  ) : (
+    <ItemList products={data} loading={loading} />
+  );
 }

@@ -6,6 +6,7 @@ const products = [
     price: 1,
     pictureUrl: "https://picsum.photos/id/237/200",
     category: "category1",
+    stock: 55,
   },
   {
     id: "2",
@@ -14,6 +15,7 @@ const products = [
     price: 2,
     pictureUrl: "https://picsum.photos/id/555/200",
     category: "category1",
+    stock: 55,
   },
   {
     id: "3",
@@ -22,6 +24,7 @@ const products = [
     price: 3,
     pictureUrl: "https://picsum.photos/id/1/200",
     category: "category2",
+    stock: 55,
   },
   {
     id: "4",
@@ -30,6 +33,7 @@ const products = [
     price: 4,
     pictureUrl: "https://picsum.photos/id/7/200",
     category: "category2",
+    stock: 55,
   },
 ];
 

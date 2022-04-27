@@ -21,16 +21,38 @@ const CartContextProvider = ({ children }) => {
       setCart(newCart);
     }
   };
+
   const removeFromCart = (id) => {
     setCart(cart.filter((cartItem) => cartItem.id !== id));
   };
 
   const buyAll = () => setCart([]);
+
   const clearCart = () => setCart([]);
+
+  const cartTotal = () => {
+    let total = 0;
+    cart.forEach((item) => (total += item.price * item.count));
+    return total;
+  };
+
+  const cartTotalCount = () => {
+    let total = 0;
+    cart.forEach((item) => (total += item.count));
+    return total;
+  };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, buyAll, clearCart }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        buyAll,
+        clearCart,
+        cartTotal,
+        cartTotalCount,
+      }}
     >
       {children}
     </CartContext.Provider>
