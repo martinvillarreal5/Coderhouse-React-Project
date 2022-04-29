@@ -1,33 +1,44 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import { getProducts } from "../Utils/customFetch";
-import products from "../Utils/products";
 import { Typography } from "@mui/material";
+
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 export default function ItemDetailContainer() {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
-  const { productId } = useParams();
+  const { itemId } = useParams();
   const [invalidId, setInvalidId] = useState(false);
 
   useEffect(() => {
-    getProducts(100, products)
-      .then((result) => {
-        result.find((item) => item.id === productId)
-          ? setProduct(result.find((item) => item.id === productId))
-          : setInvalidId(true);
+    setLoading(true);
+    let isMounted = true;
+    getDoc(doc(getFirestore(), "items", itemId))
+      .then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          if (isMounted) {
+            //console.log("Document data:", docSnapshot.data());
+            const product = { id: docSnapshot.id, ...docSnapshot.data() };
+            setProduct(product);
+          }
+        } else {
+          setInvalidId(true);
+        }
+
       })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
     return () => {
+      isMounted = false;
       setInvalidId(false);
     };
-  }, [productId]);
+  }, [itemId]);
 
   return invalidId ? (
     <Typography variant="h4">404 item not found</Typography>
   ) : (
-    <ItemDetail key={productId} product={product} loading={loading} />
+    <ItemDetail key={itemId} product={product} loading={loading} />
   );
 }

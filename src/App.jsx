@@ -22,11 +22,11 @@ export default function App() {
             <Container maxWidth="lg" className="Appcontent">
               <Routes>
                 <Route
-                  path="/item/:productId"
+                  path="/item/:itemId"
                   element={<ItemDetailContainer />}
                 />
                 <Route
-                  path="/category/:productCategory"
+                  path="/category/:itemCategory"
                   element={<ItemListContainer />}
                 />
                 <Route path="/cart" element={<Cart />} />

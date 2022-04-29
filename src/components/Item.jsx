@@ -6,7 +6,7 @@ import { Button, CardActionArea, CardActions, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function Item({ product }) {
-  const { id, title, description, pictureUrl, price } = product;
+  const { id, title, description, imageUrlFront, price } = product;
   return (
     <>
       <Grid item xs={2} sm={3} md={3}>
@@ -15,7 +15,7 @@ export default function Item({ product }) {
             <CardMedia
               component="img"
               height="140"
-              image={pictureUrl}
+              image={imageUrlFront}
               alt="random item"
             />
             <CardContent>

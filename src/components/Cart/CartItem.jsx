@@ -8,7 +8,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Grid } from "@mui/material";
 
 export default function CartItem({ product }) {
-  const { id, title, pictureUrl, price, count } = product;
+  const { id, title, imageUrlFront, price, count } = product;
   const { removeFromCart } = useContext(CartContext);
   return (
     <>
@@ -21,7 +21,7 @@ export default function CartItem({ product }) {
       >
         <CardMedia
           component="img"
-          image={pictureUrl}
+          image={imageUrlFront}
           alt="random item"
           sx={{
             width: "5rem",

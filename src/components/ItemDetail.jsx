@@ -5,7 +5,7 @@ import ItemCount from "./ItemCount";
 import { CartContext } from "./CartContext";
 
 export default function ItemDetail({ product, loading }) {
-  const { title, description, pictureUrl, price, stock } = product;
+  const { title, description, imageUrlFront, price, stock } = product;
   const [inCart, setInCart] = useState(false);
   const { addToCart } = useContext(CartContext);
 
@@ -30,7 +30,7 @@ export default function ItemDetail({ product, loading }) {
             mt: "1rem",
           }}
         >
-          <img src={pictureUrl} alt={title} />
+          <img src={imageUrlFront} alt={title} />
           <h2>{title}</h2>
           <h3>${price}</h3>
           <p>{description}</p>
