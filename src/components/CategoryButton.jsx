@@ -1,12 +1,9 @@
-import { Button, CircularProgress } from "@mui/material/";
+import { Button } from "@mui/material/";
 import { Link } from "react-router-dom";
 
-export default function CategoryButton({ category, isLoading }) {
+export default function CategoryButton({ category }) {
 
     return (
-        isLoading ? (
-            <CircularProgress />
-        ) : (
         <Button
             variant="outlined"
             size="small"
@@ -20,6 +17,6 @@ export default function CategoryButton({ category, isLoading }) {
         >
             {category.name}
         </Button>
-        )
+        
     );
 }
