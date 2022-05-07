@@ -9,12 +9,12 @@ export default function Item({ product }) {
   const { id, title, description, imageUrlFront, price } = product;
   return (
     <>
-      <Grid item xs={2} sm={3} md={3}>
+      <Grid item xs={2} sm={2} md={4}>
         <Card>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="140"
+              height="300"
               image={imageUrlFront}
               alt="random item"
             />

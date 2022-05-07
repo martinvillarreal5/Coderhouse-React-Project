@@ -21,7 +21,7 @@ export default function ItemListContainer() {
     )
       .then((snapshot) => {
         if (snapshot.size === 0) {
-          setInvalidCategory(true);
+          itemCategory ? setInvalidCategory(true) : console.log("No items found"); // do this better
         } else {
           if (isMounted) {
             const items = snapshot.docs.map((item) => {

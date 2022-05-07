@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import { Typography } from "@mui/material";
 
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { doc, getDoc, getFirestore,} from "firebase/firestore";
 
 export default function ItemDetailContainer() {
   const [product, setProduct] = useState({});

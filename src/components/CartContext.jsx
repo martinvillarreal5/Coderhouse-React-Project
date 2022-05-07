@@ -26,14 +26,10 @@ const CartContextProvider = ({ children }) => {
     setCart(cart.filter((cartItem) => cartItem.id !== id));
   };
 
-  const buyAll = () => setCart([]);
-
   const clearCart = () => setCart([]);
 
   const cartTotal = () => {
-    let total = 0;
-    cart.forEach((item) => (total += item.price * item.count));
-    return total;
+    return cart.reduce((acc, item) => acc + item.price * item.count, 0);
   };
 
   const cartTotalCount = () => {
@@ -48,7 +44,6 @@ const CartContextProvider = ({ children }) => {
         cart,
         addToCart,
         removeFromCart,
-        buyAll,
         clearCart,
         cartTotal,
         cartTotalCount,

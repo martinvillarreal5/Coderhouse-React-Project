@@ -3,11 +3,10 @@ import { useContext } from "react";
 import CartList from "./CartList";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import BuyForm from "./BuyForm";
 
 export default function Cart() {
-  const { cartTotal } = useContext(CartContext);
-  //const { loading, setLoading } = useState(true);
-  const { cart } = useContext(CartContext);
+  const { cart , cartTotal} = useContext(CartContext);
 
   if (cart.length === 0) {
     return (
@@ -19,11 +18,11 @@ export default function Cart() {
       </>
     );
   }
-
   return (
     <>
       <CartList />
       <Typography variant="h4">Total: ${cartTotal()}</Typography>
+      <BuyForm />
     </>
   );
 }

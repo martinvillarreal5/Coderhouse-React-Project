@@ -10,7 +10,7 @@ export default function ItemList({ products, loading }) {
         <Grid
           container
           spacing={{ xs: 1, sm: 2, md: 4 }}
-          columns={{ xs: 4, sm: 9, md: 12 }}
+          columns={{ xs: 1, sm: 4, md: 12 }}
           mb={3}
         >
           {products.map((product) => (
