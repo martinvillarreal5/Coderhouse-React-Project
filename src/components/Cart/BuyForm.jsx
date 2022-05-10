@@ -20,6 +20,7 @@ export default function BuyForm() {
                     price: item.price, //also/instead save total for item?
                 }
             }),
+            timeStamp: new Date().toLocaleString(),
             total: cartTotal(),
         };
         if (order.items.length > 0) {
