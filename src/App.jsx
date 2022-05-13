@@ -8,6 +8,7 @@ import ItemListContainer from "./Components/ItemListContainer";
 import Footer from "./Components/Footer";
 import CartContextProvider from "./Components/CartContext";
 import Cart from "./Components/Cart/Cart";
+import Register from "./Components/User/Register";
 
 
 
@@ -31,6 +32,7 @@ export default function App() {
                 />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/" element={<ItemListContainer />} />
+                <Route path="/register" element={<Register/>} />
               </Routes>
             </Container>
             <Footer />

@@ -14,7 +14,7 @@ const CartContextProvider = ({ children }) => {
       setCart([...cart, item]);
     } else {
       const newCart = [...cart];
-      newCart[itemIndex].count = newCart[itemIndex].count + item.count;
+      newCart[itemIndex].count += item.count;
       console.log(
         `${item.title} (id: ${item.id}) already in cart - added: ${item.count} - total: ${newCart[itemIndex].count}`
       );
@@ -33,9 +33,7 @@ const CartContextProvider = ({ children }) => {
   };
 
   const cartTotalCount = () => {
-    let total = 0;
-    cart.forEach((item) => (total += item.count));
-    return total;
+    return cart.reduce((acc, item) => acc + item.count, 0)
   };
 
   return (
