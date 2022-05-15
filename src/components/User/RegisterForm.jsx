@@ -1,91 +1,79 @@
 import { useForm, Controller } from "react-hook-form";
-import { TextField, Checkbox, Button, Box } from "@mui/material/";
+import { Button, Box, TextField } from "@mui/material/";
+//import { RegisterSchema } from "../../Utils/RegisterSchema";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from "zod"
+
 
 export default function RegisterForm() {
-    const { handleSubmit, watch, control, reset, formState: { errors } } = useForm(
-        {
-            defaultValues: {
-                checkbox: false,
-            }
-        }
-    );
-    const onSubmit = data => alert(JSON.stringify(data));
-
-    console.log(watch("email")); // watch input value by passing the name of it
-
+    const schema = z.object({
+        email: z.string()
+            .min(1, { message: "Email is required" })
+            .email({ message: "Use a valid email format" }),
+        password: z.string()
+            .min(1, { message: "Password is required" })
+            .min(8, { message: "Must be 8 or more characters long" })
+            .max(20, { message: "Must be 20 or fewer characters long" }),
+        confirmPassword: z.string().min(1, { message: "Password is required" }),
+    }).refine(data => data.confirmPassword === data.password, {
+        message: "Passwords don't match",
+        path: ['confirmPassword'],
+    });
+    
+    const { handleSubmit, control, formState: { errors } } = useForm({
+        resolver: zodResolver(schema), mode: "onChange"
+    });
+    const onSubmit = data => console.log(data);
     return (
-        /* "handleSubmit" will validate inputs before invoking "onSubmit" */
         <Box
             component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch', display: "flex" },
-
-            }}
+            sx={{ '& .MuiTextField-root': { mb: 2, width: 'auto', display: 'flex' }, }}
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
         >
             <Controller
-                name="firstName"
                 control={control}
-                rules={{ required: true }}
-                render={({ field }) =>
-                    <TextField
-                        id="firstNameTextField"
-                        label="First Name"
-                        
-                        helperText={errors.firstName?.type === 'required' && "First name is required"}
-                        //onChange={onChange} 
-                        {...field}
-                    />}
-            />
-            <Controller
-                name="lastName"
-                control={control}
-                rules={{ required: true }}
-                render={({ field}) =>
-                    <TextField
-                        id="lastNameTextField"
-                        label="Last name"
-                        helperText={errors.lastName?.type === 'required' && "Last name is required"}
-                        //onChange={onChange} 
-                        {...field}
-                    />}
-            />
-            <Controller
                 name="email"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) =>
+                defaultValue=""
+                render={({ field }) => (
                     <TextField
-                        id="emailTextField"
-                        label="Email"
-                        helperText={errors.email?.type === 'required' && "Email is required"}
-                        //onChange={onChange} 
                         {...field}
-                    />}
+                        label="email"
+                        variant='outlined'
+                        error={!!errors.email}
+                        helperText={errors.email?.message && (errors.email?.message)}
+                    />
+                )}
             />
             <Controller
+                control={control}
                 name="password"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) =>
+                defaultValue=""
+                render={({ field }) => (
                     <TextField
-                        id="passwordTextField"
-                        label="Password"
-                        helperText={errors.password?.type === 'required' && "Password is required"}
                         {...field}
-                    />}
+                        label="Password"
+                        variant='outlined'
+                        error={!!errors.password}
+                        helperText={errors.password?.message && (errors.password?.message)}
+                    />
+                )}
             />
             <Controller
-                name="checkbox"
                 control={control}
-                rules={{ required: true }}
-                render={({ field }) =>
-                    <Checkbox
-                    {...field}
-                    />}
-            />
-            <Button type="submit">Submit</Button>
+                name="confirmPassword"
+                defaultValue=""
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        label="Confirm Password"
+                        variant='outlined'
+                        error={!!errors.confirmPassword}
+                        helperText={errors.confirmPassword?.message && (errors.confirmPassword?.message)}
+                    />
+                )}
+            /> 
+            <Button variant="contained" type="submit">Submit</Button>
         </Box>
     );
 }

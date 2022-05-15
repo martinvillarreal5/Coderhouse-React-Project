@@ -37,6 +37,8 @@ export default function CategoryNav() {
     <Container maxWidth="lg">
       <Box
         display="flex"
+        flexDirection="row"
+        flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
         sx={{

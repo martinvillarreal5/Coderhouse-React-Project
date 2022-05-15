@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Grid } from "@mui/material";
+//import { Grid } from "@mui/material";
 
 export default function CartItem({ product }) {
   const { id, title, imageUrlFront, price, count } = product;

@@ -45,7 +45,7 @@ export default function ItemDetail({ product, loading }) {
                 p: 1,
               }}
             >
-              Terminar mi compra
+              Go to Cart
             </Button>
           ) : (
             <ItemCount stock={stock} initial={1} onAdd={onAdd} />
