@@ -18,8 +18,6 @@ Una vez descargado o clonado el proyecto, abrir la terminal en la ubicación ra�
     npm install    (Para descargar las dependencias del proyecto)
     npm start      (Para iniciar el proyecto en un servidor local en el navegador)
 
-* IMPORTANTE!: Hay un error en el repositorio con el nombre de la carpeta de componentes, la carpeta tiene c minúscula pero debería ser una C mayúscula, por lo que es probable que tire un error si no se cambia el nombre de la carpeta "components" a "Components" 
-
 ### Dependecias Extra
 * MUI: Librería robusta, de uso amigable y moderna de componentes con diseño de Material Design de Google. Ayuda a crear una página con diseño moderno sin las limitaciones de tiempo de iniciar CSS completo desde cero
     - mui-image: Librería que proporciona un componente de imagen altamente configurable y permite un diseño acorde a Material Design

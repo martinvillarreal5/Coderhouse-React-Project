@@ -35,7 +35,7 @@ export default function CategoryNav() {
   }, []);
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Box
         display="flex"
         flexDirection="row"
@@ -46,26 +46,29 @@ export default function CategoryNav() {
           p: 2,
         }}
       >
-        <Button variant="outlined" component={Link} to="/"
-          size="small"
-          color="primary"
-          sx={{
-            p: 1,
-            m: .5,
-          }}
-        >All</Button>
         {
           loading ? (
             <Typography width="100%" variant="h3"><Skeleton /></Typography>
 
           ) : (
-            categories.map((category) => (
-              <CategoryButton key={category.id} category={category} />
-            ))
+            <>
+              <Button variant="outlined" component={Link} to="/"
+                size="small"
+                color="primary"
+                sx={{
+                  p: 1,
+                  m: .5,
+                }}
+              >All</Button>
+              {categories.map((category) => (
+                <CategoryButton key={category.id} category={category} />
+
+              ))}
+            </>
           )
         }
       </Box>
       <Divider sx={{ mb: "1rem" }} />
-    </Container>
+    </>
   );
 }

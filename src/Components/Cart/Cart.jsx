@@ -11,7 +11,7 @@ export default function Cart() {
   if (cart.length === 0) {
     return (
       <>
-        <Typography variant="h6" gutterBottom>Your cart is empty.</Typography>
+        <Typography variant="h5" gutterBottom sx={{mt:"1rem"}}>Your cart is empty.</Typography>
         <Button variant="contained" component={Link} to="/">
           Continue Shopping
         </Button>

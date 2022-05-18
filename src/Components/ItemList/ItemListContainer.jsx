@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 import ItemList from "./ItemList";
+import CategoryNav from "../Navigation/CategoryNav";
 import { Typography } from "@mui/material";
 
 export default function ItemListContainer() {
@@ -14,14 +15,14 @@ export default function ItemListContainer() {
     setLoading(true);
     let isMounted = true;
     const db = getFirestore();
-    
+
     getDocs(
       itemCategory ? query(collection(db, "items"), where("categoryId", "==", itemCategory))
         : collection(db, "items")
     )
       .then((snapshot) => {
         if (snapshot.size === 0) {
-          itemCategory ? setInvalidCategory(true) : console.log("No items found"); 
+          itemCategory ? setInvalidCategory(true) : console.log("No items found");
         } else {
           if (isMounted) {
             const items = snapshot.docs.map((item) => {
@@ -33,7 +34,7 @@ export default function ItemListContainer() {
             setData(items);
           }
         }
-        })
+      })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
 
@@ -43,9 +44,14 @@ export default function ItemListContainer() {
     };
   }, [itemCategory]);
 
-  return invalidCategory ? (
-    <Typography variant="h4">404 category not found</Typography>
-  ) : (
-    <ItemList products={data} loading={loading} />
-  );
+  return (
+    <>
+      <CategoryNav />
+      {invalidCategory ? (
+        <Typography variant="h4">404 category not found</Typography>
+      ) : (
+        <ItemList products={data} loading={loading} />
+      )}
+    </>
+  )
 }
