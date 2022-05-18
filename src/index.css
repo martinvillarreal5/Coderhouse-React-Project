@@ -32,3 +32,7 @@ code {
 .Appcontent {
   flex: 1 1 auto;
 }
+
+.card-img {
+  margin-top: 1rem;
+}

@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import NavBar from "./Components/NavBar";
-import CategoryNav from "./Components/CategoryNav";
-import ItemDetailContainer from "./Components/ItemDetailContainer";
-import ItemListContainer from "./Components/ItemListContainer";
+import NavBar from "./Components/Navigation/NavBar";
+import CategoryNav from "./Components/Navigation/CategoryNav";
+import ItemDetailContainer from "./Components/ItemDetail/ItemDetailContainer";
+import ItemListContainer from "./Components/ItemList/ItemListContainer";
 import Footer from "./Components/Footer";
 import CartContextProvider from "./Components/CartContext";
 import Cart from "./Components/Cart/Cart";
@@ -20,7 +20,7 @@ export default function App() {
           <Box className="Appshell">
             <NavBar />
             <CategoryNav />
-            <Container maxWidth="lg" className="Appcontent">
+            <Container maxWidth="lg" className="Appcontent" height="100%">
               <Routes>
                 <Route
                   path="/item/:itemId"

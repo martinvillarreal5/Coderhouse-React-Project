@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Proyecto ecommerce React
+### General
+Bienvenido a mi proyecto de React realizado en el curso de CoderHouse, creado con Create React App, con características como: 
+* Single Page Aplication mediante el uso de React Router Dom
+* Uso de base datos Firebase Firestore 
+* Uso de hooks useState y useEffect
+* Lista de productos obtenidos desde base de datos
+* Filtrar productos por categorías obtenidas desde base de datos utilizando id de categoría obtenida de la ruta de navegación mediante hook useParams
+* Acceder al detalle de cada producto accediendo a su respectivo documento en la base datos utilizando id obtenida de la ruta de navegación mediante useParams.
+* Añadir cantidad seleccionable de productos desde el detalle al carrito de compras mediante useContext y Contexto de carrito
+* Carrito de Compras accesible en cualquier sección de la página mediante un CartWidget (ícono del carrito) en la barra de navegación, con listado de productos obtenidos desde el Contexto del carrito y precio total de la compra
+* Eliminar productos del carrito individualmente o vaciar completamente el carrito utilizando funciones del Contexto del carrito
+* Formulario de compra realizado con react-hook-form y validado por zod para agregar orden de compra (con datos del comprador, productos, timestamp y estado de orden) a la base de datos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Instrucciones y Consideraciones
+* Requiere el uso de Node.js para funcionar: 
+Una vez descargado o clonado el proyecto, abrir la terminal en la ubicación raíz del mismo y correr los siguientes comandos:
+    npm install    (Para descargar las dependencias del proyecto)
+    npm start      (Para iniciar el proyecto en un servidor local en el navegador)
 
-## Available Scripts
+* IMPORTANTE!: Hay un error en el repositorio con el nombre de la carpeta de componentes, la carpeta tiene c minúscula pero debería ser una C mayúscula, por lo que es probable que tire un error si no se cambia el nombre de la carpeta "components" a "Components" 
 
-In the project directory, you can run:
+### Dependecias Extra
+* MUI: Librería robusta, de uso amigable y moderna de componentes con diseño de Material Design de Google. Ayuda a crear una página con diseño moderno sin las limitaciones de tiempo de iniciar CSS completo desde cero
+    - mui-image: Librería que proporciona un componente de imagen altamente configurable y permite un diseño acorde a Material Design
+* React Hook Form: Librería ligera y sin dependencias que permite un manejo sencillo y optimizado de los datos del formulario y su validación mediante Hooks y componentes especializados. Su componente Controller es especialmente útil a la hora de integrar con librerías UI como MUI
+* Zod: Librería moderna de declaración y validación de "schemas" (cualquier tipo de dato, desde strings hasta objetos dentro de objetos) sin necesidad de dependencias y con un peso muy reducido. Pensada para Typescript pero usable también en Javascript, facilita elegantemente la validación de formularios de React Hook Form.
+* hookform/resolvers: 
+Permite integración de Zod con react hook form mediante un "resolver" el cual permite utilizar como validación la schema generada por Zod, en vez de la validación por defecto de react-hook-form
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
