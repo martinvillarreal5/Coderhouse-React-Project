@@ -18,15 +18,21 @@ export default function ItemDetail({ product, loading }) {
   };
 
   if (loading) {
-    return <LinearProgress />
+    return <LinearProgress
+      sx={{
+        mt: "2rem",
+      }} />
   } else {
     return (
-      <>
+      <Box
+        sx={{
+          mt: "1rem",
+          mb: "1rem",
+        }}>
         <Grid
           container
           spacing={{ xs: 1, sm: 2, md: 2 }}
           columns={{ xs: 1, sm: 4, md: 12 }}
-          mb={3}
         >
           <Grid item xs={12} sm={6}>
             <Box
@@ -57,12 +63,12 @@ export default function ItemDetail({ product, loading }) {
               <Typography variant="h4">{title}</Typography>
               <Typography variant="h3">${price}</Typography>
               <Typography variant="body1" gutterBottom>{description}</Typography>
-              <ItemCount onAdd={onAdd} stock={stock}/>
+              <ItemCount onAdd={onAdd} stock={stock} />
               {inCart ? <Button variant="contained" component={Link} to="/cart">Go to Cart</Button> : ""}
             </Box>
           </Grid>
         </Grid>
-      </>
+      </Box>
     );
   }
 }
