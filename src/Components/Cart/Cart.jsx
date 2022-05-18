@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import BuyForm from "./BuyForm";
 
 export default function Cart() {
-  const { cart , cartTotal, clearCart} = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   if (cart.length === 0) {
     return (
@@ -21,8 +21,6 @@ export default function Cart() {
   return (
     <>
       <CartList />
-      <Typography variant="h4" gutterBottom>Total: ${cartTotal()}</Typography>
-      <Button variant="contained" onClick={()=>clearCart()}>Empty cart</Button>
       <BuyForm />
     </>
   );
